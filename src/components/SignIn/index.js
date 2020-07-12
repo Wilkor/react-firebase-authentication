@@ -170,6 +170,8 @@ class SignInFacebookBase extends Component {
       .then( socialAuthUser => {
       
          api.post('/user', socialAuthUser).then(res => {
+
+          console.log('res.data.id', res.data.id, 'res.data._id', res.data._id)
           localStorage.setItem('_id', res.data.id)
          })
 
