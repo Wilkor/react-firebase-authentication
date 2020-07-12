@@ -117,7 +117,7 @@ class SignInGoogleBase extends Component {
       .then( socialAuthUser => {
 
         api.post('/user', socialAuthUser).then(res => {
-          localStorage.setItem('_id', res.data._id)
+          localStorage.setItem('_id', res.data.id)
          })
 
         localStorage.setItem('userId',socialAuthUser.user.email)
@@ -170,7 +170,7 @@ class SignInFacebookBase extends Component {
       .then( socialAuthUser => {
       
          api.post('/user', socialAuthUser).then(res => {
-          localStorage.setItem('_id', res.data._id)
+          localStorage.setItem('_id', res.data.id)
          })
 
       

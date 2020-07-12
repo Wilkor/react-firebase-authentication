@@ -50,10 +50,7 @@ class Change extends Component {
     
     const userId = localStorage.getItem('_id');
     const response = await api.get(`/product/${userId}`)
-    const newProduct = response.data.filter(user =>  {
-
-        return user.user !== userId
-    })
+    const newProduct = response.data.filter(user =>  user.user !== userId)
 
     this.setState({product:newProduct});
 
