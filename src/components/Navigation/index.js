@@ -66,20 +66,7 @@ const NavigationAuth = ({ authUser }) => (
 
 const NavigationNonAuth = () => (
   <>
-    <nav className="navbar navbar-dark bg-dark navbar-expand-sm">
-  <a className="navbar-brand" href="#">
-  
-  </a>
-  
-  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-list-4" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span className="navbar-toggler-icon"></span>
-  </button>
-  <div className="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul className="navbar-nav">
-    </ul>
-  </div>
 
-</nav>
 
   </>
   

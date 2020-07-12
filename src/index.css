@@ -262,9 +262,12 @@ body {
   margin-top:31px;
   cursor: pointer;
 }
-.navbar {
 
-  position: fixed;
-  top: 0;
-  width: 100%;
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+.bg-dark {
+    background-color: #c2185b!important;
 }
