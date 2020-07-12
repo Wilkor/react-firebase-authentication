@@ -266,8 +266,12 @@ body {
 
 .navbar {
 
-    top: 0;
-    width: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+
 }
 .bg-dark {
     background-color: #c2185b!important;
