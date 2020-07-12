@@ -30,7 +30,7 @@ class Change extends Component {
 
    isMatch = () => {
     const user = localStorage.getItem('_id');
-      const socket = io('http://localhost:3333', {
+      const socket = io('https://tindev-wilkor-backend.herokuapp.com', {
         query:{user:user}
       })
 
