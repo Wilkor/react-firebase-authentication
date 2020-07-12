@@ -21,13 +21,13 @@ const Navigation = () => (
 
 const NavigationAuth = ({ authUser }) => (
   <>
-    <nav className="navbar navbar-dark bg-dark navbar-expand-sm">
+  <nav className="navbar navbar-dark bg-dark navbar-expand-sm">
   <a className="navbar-brand" href="#">
   <img src={authUser.providerData[0].photoURL} width="40" height="40" className="rounded-circle"/>
  
   </a>
   
-  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-list-4" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-list-4" aria-controls="navbarNav" aria-expanded="true" aria-label="Toggle navigation">
     <span className="navbar-toggler-icon"></span>
   </button>
   <div className="collapse navbar-collapse" id="navbarNavDropdown">

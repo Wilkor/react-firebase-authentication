@@ -214,9 +214,10 @@ body {
 }
 .incluir-produto {
   
-  display: flex;
-  justify-content: center;
-  margin-top: 140px;
+ 
+
+  margin-top: 50px;
+  width: 330px;
 
   
 }
@@ -264,7 +265,7 @@ body {
 }
 
 .navbar {
-    position: fixed;
+
     top: 0;
     width: 100%;
 }
