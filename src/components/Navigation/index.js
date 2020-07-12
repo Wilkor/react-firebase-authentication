@@ -44,10 +44,10 @@ const NavigationAuth = ({ authUser }) => (
           <Link to="/myproducts" class="dropdown-item" href="#">Meus Produtos</Link>
         </div>
       </li>
-      {/* <li className="nav-item">
+     <li className="nav-item">
         <Link to="/notification" className="nav-link" href="#">Notificações</Link>
       </li>
-      <li className="nav-item">
+       {/* <li className="nav-item">
       <Link to="/profile" className="nav-link" href="#">Perfil</Link>
       
       </li> */}
