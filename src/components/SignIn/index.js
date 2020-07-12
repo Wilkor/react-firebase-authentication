@@ -1,22 +1,32 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
-
-import { SignUpLink } from '../SignUp';
-import { PasswordForgetLink } from '../PasswordForget';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
+import api from '../../Service/api';
 
 const SignInPage = () => (
-  <div>
-    <h1>SignIn</h1>
+<>
+
+<div class="login-box">
+		 <a className="navbar-brand" href="#">
+  <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="90" height="90" className="rounded-circle"/>
+ 
+  </a>	
+      <SignInFacebook/>
+			<SignInGoogle />
+ 
+  
+		</div>
+
+     {/*<h1>Entrar</h1>
     <SignInForm />
     <SignInGoogle />
     <SignInFacebook />
     <SignInTwitter />
     <PasswordForgetLink />
-    <SignUpLink />
-  </div>
+    <SignUpLink /> */}
+  </>
 );
 
 const INITIAL_STATE = {
@@ -100,10 +110,18 @@ class SignInGoogleBase extends Component {
     this.state = { error: null };
   }
 
-  onSubmit = event => {
+  onSubmit = async (event) => {
+
     this.props.firebase
       .doSignInWithGoogle()
-      .then(socialAuthUser => {
+      .then( socialAuthUser => {
+
+        api.post('/user', socialAuthUser).then(res => {
+          localStorage.setItem('_id', res.data._id)
+         })
+
+        localStorage.setItem('userId',socialAuthUser.user.email)
+        localStorage.setItem('userObject', JSON.stringify(socialAuthUser) )
         // Create a user in your Firebase Realtime Database too
         return this.props.firebase.user(socialAuthUser.user.uid).set({
           username: socialAuthUser.user.displayName,
@@ -113,13 +131,13 @@ class SignInGoogleBase extends Component {
       })
       .then(() => {
         this.setState({ error: null });
-        this.props.history.push(ROUTES.HOME);
+        this.props.history.push(ROUTES.CHANGE);
       })
       .catch(error => {
         if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
           error.message = ERROR_MSG_ACCOUNT_EXISTS;
         }
-
+        this.props.history.push(ROUTES.CHANGE);
         this.setState({ error });
       });
 
@@ -131,7 +149,7 @@ class SignInGoogleBase extends Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <button type="submit">Sign In with Google</button>
+        <a class="social-button" id="google-connect" onClick={this.onSubmit}><span>Entrar com Google</span></a>
 
         {error && <p>{error.message}</p>}
       </form>
@@ -146,10 +164,18 @@ class SignInFacebookBase extends Component {
     this.state = { error: null };
   }
 
-  onSubmit = event => {
+  onSubmit = (event) => {
     this.props.firebase
       .doSignInWithFacebook()
-      .then(socialAuthUser => {
+      .then( socialAuthUser => {
+      
+         api.post('/user', socialAuthUser).then(res => {
+          localStorage.setItem('_id', res.data._id)
+         })
+
+      
+        localStorage.setItem('userObject', JSON.stringify(socialAuthUser))
+        localStorage.setItem('userId', socialAuthUser.additionalUserInfo.profile.email)
         // Create a user in your Firebase Realtime Database too
         return this.props.firebase.user(socialAuthUser.user.uid).set({
           username: socialAuthUser.additionalUserInfo.profile.name,
@@ -159,13 +185,13 @@ class SignInFacebookBase extends Component {
       })
       .then(() => {
         this.setState({ error: null });
-        this.props.history.push(ROUTES.HOME);
+        this.props.history.push(ROUTES.CHANGE);
       })
       .catch(error => {
         if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
           error.message = ERROR_MSG_ACCOUNT_EXISTS;
         }
-
+        this.props.history.push(ROUTES.CHANGE);
         this.setState({ error });
       });
 
@@ -177,7 +203,9 @@ class SignInFacebookBase extends Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <button type="submit">Sign In with Facebook</button>
+        <a  class="social-button" id="facebook-connect" 
+        onClick={this.onSubmit}
+        ><span>Entrar com Facebook</span></a>
 
         {error && <p>{error.message}</p>}
       </form>
@@ -231,6 +259,8 @@ class SignInTwitterBase extends Component {
   }
 }
 
+
+
 const SignInForm = compose(
   withRouter,
   withFirebase,
@@ -250,6 +280,8 @@ const SignInTwitter = compose(
   withRouter,
   withFirebase,
 )(SignInTwitterBase);
+
+
 
 export default SignInPage;
 

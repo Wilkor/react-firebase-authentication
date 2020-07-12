@@ -10,6 +10,11 @@ import HomePage from '../Home';
 import AccountPage from '../Account';
 import AdminPage from '../Admin';
 
+import Product from '../../components/Product/IncludeProduct/index';
+import Change from '../../components/Change/index';
+import MyProducts from '../../components/MyProducts/index';
+import Profile from '../../components/MyProfile/index';
+import Notification from '../../components/Messages/Messages';
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
 
@@ -17,8 +22,6 @@ const App = () => (
   <Router>
     <div>
       <Navigation />
-
-      <hr />
 
       <Route exact path={ROUTES.LANDING} component={LandingPage} />
       <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
@@ -28,6 +31,11 @@ const App = () => (
         component={PasswordForgetPage}
       />
       <Route path={ROUTES.HOME} component={HomePage} />
+      <Route path={ROUTES.PRODUCT} component={Product} />
+      <Route path={ROUTES.CHANGE} component={Change} />
+      <Route path={ROUTES.MYPRODUCTS} component={MyProducts} />
+      <Route path={ROUTES.PROFILE} component={Profile} />
+      <Route path={ROUTES.MESSAGE} component={Notification} />
       <Route path={ROUTES.ACCOUNT} component={AccountPage} />
       <Route path={ROUTES.ADMIN} component={AdminPage} />
     </div>

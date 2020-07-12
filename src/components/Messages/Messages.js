@@ -112,7 +112,7 @@ class Messages extends Component {
             )}
 
             {!messages && <div>There are no messages ...</div>}
-
+             <br></br>
             <form
               onSubmit={event =>
                 this.onCreateMessage(event, authUser)
@@ -123,7 +123,7 @@ class Messages extends Component {
                 value={text}
                 onChange={this.onChangeText}
               />
-              <button type="submit">Send</button>
+              <button type="submit"> Enviar </button>
             </form>
           </div>
         )}
