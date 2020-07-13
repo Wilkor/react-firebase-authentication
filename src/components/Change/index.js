@@ -25,6 +25,7 @@ const   Change = () => {
 
     socket.on('match',dev => {
 
+      alert(JSON.stringify(dev))
       const obj = dev
       setMatchDev(obj._doc);
       const {user} = JSON.parse(localStorage.getItem('userObject'));
