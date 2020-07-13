@@ -9,11 +9,24 @@ import io from 'socket.io-client'
 import itsamatch from '../../assets/itsamatch.png';
 import './main.css';
 
-let   Change = () => {
+const   Change = () => {
 
     const [product,setProduct] = useState([])
     const [matchDev,setMatchDev] = useState(null)
     const [user, setUser] = useState('')
+
+    const socket = io('https://tindev-wilkor-backend.herokuapp.com', {
+      query:{user:user}
+    })
+
+    socket.on('match',dev =>{
+
+      
+      setMatchDev(dev);
+
+
+    })
+
 
   useEffect(async () => {
       const user = localStorage.getItem('_id');
@@ -25,13 +38,15 @@ let   Change = () => {
 
   useEffect(()=>{
 
-    const socket = io('https://tindev-wilkor-backend.herokuapp.com', {
-      query:{user:user}
-    })
+    // const socket = io('https://tindev-wilkor-backend.herokuapp.com', {
+    //   query:{user:user}
+    // })
 
-    socket.on('match',dev =>{
-      setMatchDev(dev)
-    })
+    // socket.on('match',dev =>{
+
+      
+    //   setMatchDev(dev)
+    // })
 
   },[])
    
