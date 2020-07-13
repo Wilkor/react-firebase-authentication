@@ -13,13 +13,14 @@ const SignInPage = () => (
   <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="90" height="90" className="rounded-circle"/>
  
   </a>	
-      <SignInFacebook/>
+      
 			<SignInGoogle />
  
   
 		</div>
 
      {/*<h1>Entrar</h1>
+     <SignInFacebook/>
     <SignInForm />
     <SignInGoogle />
     <SignInFacebook />
@@ -172,9 +173,6 @@ class SignInFacebookBase extends Component {
       .then( socialAuthUser => {
       
          api.post('/user', socialAuthUser).then(res => {
-
-
-          console.log( res.data)
           localStorage.setItem('_id', res.data._id)
          })
 

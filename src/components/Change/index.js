@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
 import dislike from  '../../assets/dislike.svg';
-import logo from  '../../assets/logo.svg';
 import like from  '../../assets/like.svg';
 import emojiTriste from  '../../assets/emojiTriste.png';
 import api from '../../Service/api';
-import {Link} from 'react-router-dom';
 import io from 'socket.io-client'
-import { AuthUserContext } from '../Session';
+
 
 
 import itsamatch from '../../assets/itsamatch.png';
 import './main.css';
-
 
 
 
@@ -86,67 +83,60 @@ class Change extends Component {
 
     return (
       <>
-    <AuthUserContext.Consumer>{authUser => (
-
-<>
-
-  <div className="main-container">
-   
-  {this.state.product.length > 0 ? (
-      <ul> 
-      {this.state.product.map(produto => (
-      <li key={produto._id}>
-      <img src={produto.urlFireBase} alt="TinDev"/>
-      <footer>
-      <strong>{produto.productName}</strong>
-      
-      </footer>
-
-      <div className="buttons">
-
-      <button type="button" onClick={() => this.handleDislike(produto.user)}>
-      <img src={dislike} alt="dislike"/> 
-      </button>
-      <button type="button"  onClick={() => this.handleLike(produto.user)}>
-      <img src={like} alt="like"/>
-      </button>
-      
-      </div>
-
-      </li>
-      ))}
-
-  </ul>
-  ) : <div className="empty"> 
-   <img className="emojiTriste" src={emojiTriste} alt="avatar"/>
-      <br></br>
-      Poxa, que pena.. acabaram os produtos para você trocar, mas já já vem mais!
-      </div>
   
-  }
+      <div className="main-container">
+       
+      {this.state.product.length > 0 ? (
+          <ul> 
+          {this.state.product.map(produto => (
+          <li key={produto._id}>
+          <img src={produto.urlFireBase} alt="TinDev"/>
+          <footer>
+          <strong>{produto.productName}</strong>
+          
+          </footer>
 
-  { this.state.matchDev &&(
+          <div className="buttons">
 
-    <div className="match-container">
-     <img src={itsamatch} alt="its a match"/>
-     <img className="avatar" src={this.state.matchDev.urlFireBase} alt="avatar"/>
-     <strong>{this.state.matchDev.name}</strong>
-     <button type="button" onClick={()=> this.setState({matchDev: null})}>
-      fechar
-      </button>
-    </div>
-
-
-  )
-   }
-
-      
+          <button type="button" onClick={() => this.handleDislike(produto.user)}>
+          <img src={dislike} alt="dislike"/>
+          </button>
+          <button type="button"  onClick={() => this.handleLike(produto.user)}>
+          <img src={like} alt="like"/>
+          </button>
+          
           </div>
 
-  </>
+          </li>
+          ))}
 
-    )}</AuthUserContext.Consumer>
- 
+      </ul>
+      ) : <div className="empty"> 
+       <img className="emojiTriste" src={emojiTriste} alt="avatar"/>
+          <br></br>
+          Poxa, que pena.. acabaram os produtos para você trocar, mas já já vem mais!
+          </div>
+      
+      }
+
+      { this.state.matchDev &&(
+
+        <div className="match-container">
+         <img src={itsamatch} alt="its a match"/>
+         <img className="avatar" src={this.state.matchDev.urlFireBase} alt="avatar"/>
+         <strong>{this.state.matchDev.name}</strong>
+         <button type="button" onClick={()=> this.setState({matchDev: null})}>
+          fechar
+          </button>
+        </div>
+
+
+      )
+       }
+
+          
+              </div>
+
       </>
   )
       }
