@@ -8,7 +8,7 @@
 
 }
 
-@media (min-width: 710px) and (max-width: 7500px) {
+@media (min-width: 300px) and (max-width: 7500px) {
 
 
 .main-container ul{
@@ -139,7 +139,7 @@ cursor:pointer;
 
 
 
-@media (min-width: 375px) and (max-width: 700px) {
+@media (min-width: 300px) and (max-width: 7500px) {
 
 .main-container ul{
 

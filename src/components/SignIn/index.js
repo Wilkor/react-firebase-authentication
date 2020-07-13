@@ -140,7 +140,7 @@ class SignInGoogleBase extends Component {
         if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
           error.message = ERROR_MSG_ACCOUNT_EXISTS;
         }
-        this.props.history.push(ROUTES.SIGN_IN);
+        this.props.history.push(ROUTES.LANDING);
         this.setState({ error });
       });
 

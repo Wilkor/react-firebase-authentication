@@ -82,7 +82,8 @@ class MyProducts extends Component {
           <li key={produto._id}>
           <img src={produto.urlFireBase} alt="TinDev"/>
           <footer>
-          <strong>{produto.productName}</strong>
+          <strong>{produto.category}</strong>
+          <p>{produto.productName}</p>
           
           </footer>
 
@@ -91,9 +92,7 @@ class MyProducts extends Component {
           <button type="button" onClick={() => this.handleDelete(produto._id)}>
           <img src={dislike} alt="dislike"/>
           </button>
-          <button type="button"  onClick={() => this.handlEdit(produto._id)}>
-          <img src={lapis} alt="like" width="30px"/>
-          </button>
+         
           
           </div>
 

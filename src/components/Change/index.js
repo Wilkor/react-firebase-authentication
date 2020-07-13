@@ -36,26 +36,20 @@ const   Change = () => {
 
   useEffect( () => {
     
-      setTimeout(() => {
-        handleGetUser();
+      setTimeout( async () => {
+         
+        const userId =  localStorage.getItem('_id');
+
+        const response = await api.get(`/product/${userId}`)
+        const newProduct = response.data.filter(user =>  user.user !== user)
+        setProduct(newProduct);
+        setUser(userId)
+
       }, 400)
  
   },[])
 
 
-  async function handleGetUser(){
-
-      
-      const userId =  localStorage.getItem('_id');
-
-      const response = await api.get(`/product/${userId}`)
-      const newProduct = response.data.filter(user =>  user.user !== user)
-      setProduct(newProduct);
-      setUser(userId)
-   
- 
-  }
-   
   async function handleDislike(id) {
     
     await api.post(`/user/${user}/dislikes`,null,{headers:{

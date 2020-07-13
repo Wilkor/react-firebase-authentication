@@ -61,10 +61,41 @@ const NavigationAuth = ({ authUser }) => (
 
 const NavigationNonAuth = () => (
   <>
-
-
-  </>
+  <nav className="navbar navbar-expand-lg navbar-light bg-light navbar navbar-dark bg-dark">
   
+  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span className="navbar-toggler-icon"></span>
+  </button>
+
+  <div className="collapse navbar-collapse" id="navbarSupportedContent">
+
+  <ul className="navbar-nav">
+      <li className="nav-item active">
+      
+        
+      </li>
+      <li class="nav-item dropdown">
+       
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+         
+        </div>
+      </li>
+      {/*<li className="nav-item">
+        <Link to="/notification" className="nav-link" href="#">Notificações</Link>
+      </li>
+       <li className="nav-item">
+      <Link to="/profile" className="nav-link" href="#">Perfil</Link>
+      
+      </li> */}
+   
+      <li className="nav-item">
+     
+       </li>
+     </ul>
+
+  </div>
+</nav>
+</>
 );
 
 export default Navigation;
