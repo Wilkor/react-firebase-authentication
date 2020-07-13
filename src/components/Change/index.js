@@ -28,8 +28,7 @@ const   Change = () => {
       
       setMatchDev(dev);
 
-      alert(JSON.stringify(dev))
-      //setUrl(`/join?name=${dev.name}&room=${dev}`)
+      setUrl(`/join?name=${dev.name}&room=changeme`)
 
     })
 
@@ -108,7 +107,7 @@ const   Change = () => {
          <img src={itsamatch} alt="its a match"/>
          <img className="avatar" src={matchDev.urlFireBase} alt="avatar"/>
          <strong>{matchDev.name}</strong>
-         <Link to="">Ir para o Chat</Link>
+         <Link to={url}>Ir para o Chat</Link>
         </div>
 
 
