@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { withFirebase } from '../../Firebase';
+
+
 import api from '../../../Service/api';
 
 
@@ -123,7 +125,6 @@ class ImageUploadBase extends Component {
   
 
     </div>
-        
 
   </div>
   <div className="form-row">
@@ -137,6 +138,7 @@ class ImageUploadBase extends Component {
  </div>
       </div>
       </main>
+      
     )
   }
 
