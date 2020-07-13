@@ -19,16 +19,16 @@ const   Change = () => {
     const [user, setUser] = useState('');
     const [url, setUrl] = useState('')
 
-    const socket = io('https://tindev-wilkor-backend.herokuapp.com', {
+    const socket = io('http://localhost:3333', {
       query:{user:user}
     })
 
-    socket.on('match',dev =>{
+    socket.on('match',dev => {
 
-      
-      setMatchDev(dev);
-
-      setUrl(`/join?name=${dev.name}&room=changeme`)
+      const obj = dev
+      setMatchDev(obj._doc);
+      const {user} = JSON.parse(localStorage.getItem('userObject'));
+      setUrl(`/join?name=${user.displayName}&room=${dev.idChat}`)
 
     })
 
