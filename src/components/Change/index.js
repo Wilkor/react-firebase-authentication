@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {useEffect, useState} from 'react';
 import dislike from  '../../assets/dislike.svg';
 import like from  '../../assets/like.svg';
 import emojiTriste from  '../../assets/emojiTriste.png';
@@ -6,89 +6,65 @@ import api from '../../Service/api';
 import io from 'socket.io-client'
 
 
-
 import itsamatch from '../../assets/itsamatch.png';
 import './main.css';
 
+let   Change = () => {
 
+    const [product,setProduct] = useState([])
+    const [matchDev,setMatchDev] = useState(null)
+    const [user, setUser] = useState('')
 
-class Change extends Component {
+  useEffect(async () => {
+      const user = localStorage.getItem('_id');
+      setUser(user)
+      const response = await api.get(`/product/${user}`)
+      const newProduct = response.data.filter(user =>  user.user !== user)
+      setProduct(newProduct);
+  },[])
 
-  constructor(props) {
-    super(props);
-    this.state = {
-       product:[],
-       user:'',
-       matchDev: ''
-    }
+  useEffect(()=>{
 
-    this.getUser();
-   this.handleGetProducts();
+    const socket = io('http://localhost:3333', {
+      query:{user:user}
+    })
 
-  }
+    socket.on('match',dev =>{
+      setMatchDev(dev)
+    })
 
-
-   isMatch = () => {
-    const user = localStorage.getItem('_id');
-      const socket = io('https://tindev-wilkor-backend.herokuapp.com', {
-        query:{user:user}
-      })
-
-      socket.on('match',dev=>{
-        this.setState({matchDev:dev})
-      })
-
-   }
-
-  getUser = () => {
-
-    const user = localStorage.getItem('_id');
-     this.setState({user: user})
-
-  }
-  handleGetProducts = async () => {
+  },[])
+   
+  async function handleDislike(id) {
     
-    const userId = localStorage.getItem('_id');
-    const response = await api.get(`/product/${userId}`)
-    const newProduct = response.data.filter(user =>  user.user !== userId)
-
-    this.setState({product:newProduct});
-
-
-  }
-
-  handleDislike = async (id) => {
-    const user = localStorage.getItem('_id');
     await api.post(`/user/${user}/dislikes`,null,{headers:{
         user:id
     }})
 
      
-    const newProduct = this.state.product.filter(user=> user.user != id)
-    this.setState({product:newProduct});
+    const newProduct = product.filter(user=> user.user != id)
+     setProduct(newProduct);
  }
 
-    handleLike = async  (id) => {
-      const user = localStorage.getItem('_id');
-    await api.post(`/user/${user}/likes`,null,{headers:{
-       user: id
-   }})
-   console.log('produto', this.state.product)
-   const newProduct = this.state.product.filter(user=> user.user != id)
-   this.setState({product: newProduct});
-   this.isMatch()
+ async function handleLike(id) {
+
+      await api.post(`/user/${user}/likes`,null,{headers:{user: id}})
+      console.log('produto', product)
+      const newProduct = product.filter(user=> user.user != id)
+      setProduct(newProduct);
+     
  }
 
-  render (){
+  
 
     return (
       <>
   
       <div className="main-container">
        
-      {this.state.product.length > 0 ? (
+      {product.length > 0 ? (
           <ul> 
-          {this.state.product.map(produto => (
+          {product.map(produto => (
           <li key={produto._id}>
           <img src={produto.urlFireBase} alt="TinDev"/>
           <footer>
@@ -98,10 +74,10 @@ class Change extends Component {
 
           <div className="buttons">
 
-          <button type="button" onClick={() => this.handleDislike(produto.user)}>
+          <button type="button" onClick={() => handleDislike(produto.user)}>
           <img src={dislike} alt="dislike"/>
           </button>
-          <button type="button"  onClick={() => this.handleLike(produto.user)}>
+          <button type="button"  onClick={() => handleLike(produto.user)}>
           <img src={like} alt="like"/>
           </button>
           
@@ -119,13 +95,13 @@ class Change extends Component {
       
       }
 
-      { this.state.matchDev &&(
+      { matchDev &&(
 
         <div className="match-container">
          <img src={itsamatch} alt="its a match"/>
-         <img className="avatar" src={this.state.matchDev.urlFireBase} alt="avatar"/>
-         <strong>{this.state.matchDev.name}</strong>
-         <button type="button" onClick={()=> this.setState({matchDev: null})}>
+         <img className="avatar" src={matchDev.urlFireBase} alt="avatar"/>
+         <strong>{matchDev.name}</strong>
+         <button type="button" onClick={()=> setMatchDev(null)}>
           fechar
           </button>
         </div>
@@ -139,10 +115,9 @@ class Change extends Component {
 
       </>
   )
-      }
-  
+      
+
 }
 
 export default Change;
-
 
