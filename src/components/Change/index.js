@@ -51,6 +51,7 @@ const   Change = () => {
       const response = await api.get(`/product/${userId}`)
       const newProduct = response.data.filter(user =>  user.user !== user)
       setProduct(newProduct);
+      setUser(userId)
    
  
   }
