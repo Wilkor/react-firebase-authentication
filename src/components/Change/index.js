@@ -34,14 +34,26 @@ const   Change = () => {
     })
 
 
-  useEffect(async () => {
-      const user = localStorage.getItem('_id');
-      setUser(user)
-      const response = await api.get(`/product/${user}`)
-      const newProduct = response.data.filter(user =>  user.user !== user)
-      setProduct(newProduct);
+  useEffect( () => {
+    
+      setTimeout(() => {
+        handleGetUser();
+      }, 400)
+ 
   },[])
 
+
+  async function handleGetUser(){
+
+      
+      const userId =  localStorage.getItem('_id');
+
+      const response = await api.get(`/product/${userId}`)
+      const newProduct = response.data.filter(user =>  user.user !== user)
+      setProduct(newProduct);
+   
+ 
+  }
    
   async function handleDislike(id) {
     
