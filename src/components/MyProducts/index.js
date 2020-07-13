@@ -16,12 +16,14 @@ class MyProducts extends Component {
 
   constructor(props) {
     super(props);
+
+   
+
     this.state = {
        product:[],
        user:'',
        matchDev: ''
     }
-
     this.getUser();
    this.handleGetProducts();
 

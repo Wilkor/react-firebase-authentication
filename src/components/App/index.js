@@ -29,6 +29,7 @@ const App = () => (
       <Navigation />
       
       <Route path={ROUTES.SIGN_IN} component={SignInPage} />
+      <Route path={ROUTES.LANDING} component={SignInPage} />
       <Route
         path={ROUTES.PASSWORD_FORGET}
         component={PasswordForgetPage} 

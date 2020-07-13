@@ -26,6 +26,9 @@ class ImageUploadBase extends Component {
       category: '',
       user: localStorage.getItem('_id')
     }
+
+    this.handleSubmit = this.handleSubmit.bind(props);
+
     this.handleChange = this
       .handleChange
       .bind(this);
@@ -56,6 +59,8 @@ class ImageUploadBase extends Component {
       this.setState({progress: 0})
       this.setState({productName: ''})
       this.setState({category: ''})
+
+      
       
     }
 
@@ -68,8 +73,8 @@ class ImageUploadBase extends Component {
     }
 
     setTimeout(() => {
-      this.handleUpload()
-    }, 1000)
+      this.handleUpload(this)
+    }, 400)
   }
   handleUpload = () => {
       const {image} = this.state;
@@ -97,10 +102,10 @@ class ImageUploadBase extends Component {
     return (
 
    
-      <main role="main" class="container">
+      <main role="main" className="container">
              <br/>  <br/> <br/>  
-      <div class="my-3 p-3 bg-white rounded shadow-sm">
-          <h4 class="border-bottom border-gray pb-2 mb-0">Incluir Produto</h4>
+      <div className="my-3 p-3 bg-white rounded shadow-sm">
+          <h4 className="border-bottom border-gray pb-2 mb-0">Incluir Produto</h4>
           <br/>
             <div className="form-group text-grey">
 
@@ -115,7 +120,7 @@ class ImageUploadBase extends Component {
           
           <form>
           <div className="form-row">
-              <label for="inputCity">Descreva porque trocar:</label>
+              <label>Descreva porque trocar:</label>
               <textarea id="story" name="story"  className="form-control"  onChange = {(event) => this.setState({productName:event.target.value})}
                   rows="5" cols="33"></textarea>
               
