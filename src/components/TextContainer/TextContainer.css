@@ -1,0 +1,42 @@
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1%;
+  color: white;
+  height:10%;
+  justify-content: space-between;
+  background-color:  white;
+  padding: 10px;
+  position: relative;
+  right: 8px;
+  top:-214px;
+}
+.peopleOnline {
+    font-size: 14px;
+}
+.activeContainer {
+  margin-bottom: 10%;
+}
+
+.activeItem {
+  display: flex;
+  align-items: center;
+  margin-left: 0px;
+  margin-top: -10px;
+  font-size: 15px;
+}
+
+.activeContainer img {
+  padding-left: 5px;
+  margin-top: 2px
+}
+
+.textContainer h1 {
+  margin-bottom: 0px;
+}
+
+@media (min-width: 320px) and (max-width: 1200px) {
+  .textContainer {
+    display: none;
+  }
+}

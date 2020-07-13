@@ -228,6 +228,7 @@ body {
   font-size: 1rem;
   line-height: 1.5;
   cursor: pointer;
+  margin-left: 14px;
 }
 
 .button-wrapper span.label {
@@ -235,7 +236,8 @@ body {
   z-index: 0;
   display: inline-block;
   width: 100%;
-  background: #007bff;
+  background-color: #c2185b;
+  border-color: #c2185b;
   cursor: pointer;
   color: #fff;
   padding: 10px 0;
@@ -283,4 +285,24 @@ body {
   display: flex;
   margin-left: 30px;
   
+}
+
+.rounded-circle-include-product {
+  border-radius: 50%!important;
+  margin-left: 66px;
+}
+.rounded-circle {
+  border-radius: 50%!important;
+  width: 58px;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #c2185b;
+  border-color: #c2185b;
+}
+.btn-primary:hover {
+  color: #fff;
+  background-color: #c2185b;
+  border-color: #c2185b;
 }

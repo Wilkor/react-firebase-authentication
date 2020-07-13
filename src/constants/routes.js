@@ -11,3 +11,5 @@ export const CHANGE = '/change';
 export const MYPRODUCTS = '/myproducts';
 export const PROFILE = '/profile';
 export const MESSAGE = '/notification';
+export const CHAT = '/chat';
+export const JOIN = '/join';

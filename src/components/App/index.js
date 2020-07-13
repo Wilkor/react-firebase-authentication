@@ -15,6 +15,11 @@ import Change from '../../components/Change/index';
 import MyProducts from '../../components/MyProducts/index';
 import Profile from '../../components/MyProfile/index';
 import Notification from '../../components/Messages/Messages';
+
+import Join from '../../components/Join/Join';
+import Chat from '../../components/Chat/Chat';
+
+
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
 
@@ -22,9 +27,7 @@ const App = () => (
   <Router>
     <div>
       <Navigation />
-
-      <Route exact path={ROUTES.LANDING} component={SignInPage} />
-      <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
+      
       <Route path={ROUTES.SIGN_IN} component={SignInPage} />
       <Route
         path={ROUTES.PASSWORD_FORGET}
@@ -34,10 +37,8 @@ const App = () => (
       <Route path={ROUTES.PRODUCT} component={Product} />
       <Route path={ROUTES.CHANGE} component={Change} />
       <Route path={ROUTES.MYPRODUCTS} component={MyProducts} />
-      <Route path={ROUTES.PROFILE} component={Profile} />
-      <Route path={ROUTES.MESSAGE} component={Notification} />
-      <Route path={ROUTES.ACCOUNT} component={AccountPage} />
-      <Route path={ROUTES.ADMIN} component={AdminPage} />
+      <Route path={ROUTES.JOIN}  component={Join} />
+      <Route path={ROUTES.CHAT} component={Chat} />
     </div>
   </Router>
 );

@@ -2,6 +2,9 @@ import React, {useEffect, useState} from 'react';
 import dislike from  '../../assets/dislike.svg';
 import like from  '../../assets/like.svg';
 import emojiTriste from  '../../assets/emojiTriste.png';
+import { Link } from "react-router-dom";
+
+
 import api from '../../Service/api';
 import io from 'socket.io-client'
 
@@ -13,9 +16,10 @@ const   Change = () => {
 
     const [product,setProduct] = useState([])
     const [matchDev,setMatchDev] = useState(null)
-    const [user, setUser] = useState('')
+    const [user, setUser] = useState('');
+    const [url, setUrl] = useState('')
 
-    const socket = io('https://tindev-wilkor-backend.herokuapp.com', {
+    const socket = io('http://localhost:3333', {
       query:{user:user}
     })
 
@@ -24,6 +28,8 @@ const   Change = () => {
       
       setMatchDev(dev);
 
+      alert(JSON.stringify(dev))
+      //setUrl(`/join?name=${dev.name}&room=${dev}`)
 
     })
 
@@ -57,7 +63,6 @@ const   Change = () => {
      
  }
 
-  
 
     return (
       <>
@@ -103,9 +108,7 @@ const   Change = () => {
          <img src={itsamatch} alt="its a match"/>
          <img className="avatar" src={matchDev.urlFireBase} alt="avatar"/>
          <strong>{matchDev.name}</strong>
-         <button type="button" onClick={()=> setMatchDev(null)}>
-          fechar
-          </button>
+         <Link to="">Ir para o Chat</Link>
         </div>
 
 

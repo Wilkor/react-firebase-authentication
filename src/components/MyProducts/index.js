@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import dislike from  '../../assets/dislike.svg';
-import logo from  '../../assets/logo.svg';
-import like from  '../../assets/like.svg';
 import lapis from  '../../assets/lapis.png';
 import api from '../../Service/api';
-import {Link} from 'react-router-dom';
-import io from 'socket.io-client'
+
+
+import {NotificationContainer, NotificationManager} from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
 
 import itsamatch from '../../assets/itsamatch.png';
 
@@ -45,9 +45,17 @@ class MyProducts extends Component {
 
   handleDelete = async (id) => {
    
-    await api.delete(`/product/${id}`)
+    await api.delete(`/product/${id}`).then(res => {
 
-     
+     if(res){
+
+       NotificationManager.success('Produto cadastrado com sucesso!', 'Concluido!');
+       this.handleGetProducts();
+     }
+    }).catch(err => {
+      NotificationManager.erro('Erro ao excluir, tente novamente!', 'Erro!');
+    })
+
     const newProduct = this.state.product.filter(user=> user.user != id)
     this.setState({product:newProduct});
  }
@@ -111,7 +119,7 @@ class MyProducts extends Component {
       )
        }
 
-          
+<NotificationContainer/>
               </div>
 
       
