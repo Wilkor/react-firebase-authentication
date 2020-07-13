@@ -36,19 +36,6 @@ const   Change = () => {
       setProduct(newProduct);
   },[])
 
-  useEffect(()=>{
-
-    // const socket = io('https://tindev-wilkor-backend.herokuapp.com', {
-    //   query:{user:user}
-    // })
-
-    // socket.on('match',dev =>{
-
-      
-    //   setMatchDev(dev)
-    // })
-
-  },[])
    
   async function handleDislike(id) {
     
