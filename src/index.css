@@ -214,12 +214,9 @@ body {
 }
 .incluir-produto {
   
+  margin-top: 100px;
+  width: 340px;
 
-  margin-top: 120px;
-  width: 330px;
-
-
-  
 }
 
 
@@ -245,6 +242,7 @@ body {
   font-size: 1rem;
   line-height: 1.1;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 #upload {
@@ -260,8 +258,9 @@ body {
 }
 .button-wrapper {
 
-  margin-top:31px;
+  margin-top: 0px;
   cursor: pointer;
+  padding-right: 1px;
 }
 
 .navbar {
@@ -275,4 +274,13 @@ body {
 }
 .bg-dark {
     background-color: #c2185b!important;
+}
+#imagem-upload {
+  margin-left: 100px;
+}
+
+#container-button {
+  display: flex;
+  margin-left: 30px;
+  
 }

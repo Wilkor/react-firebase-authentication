@@ -70,8 +70,8 @@ const   Change = () => {
           <li key={produto._id}>
           <img src={produto.urlFireBase} alt="TinDev"/>
           <footer>
-          <strong>{produto.productName}</strong>
-          
+          <strong>{produto.category}</strong>
+          <p>{produto.productName}</p>
           </footer>
 
           <div className="buttons">

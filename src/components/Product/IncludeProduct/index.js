@@ -97,13 +97,23 @@ class ImageUploadBase extends Component {
 <div >
   
   <div className="incluir-produto" >
+
+  <div className="form-row" id="imagem-upload">
+  <div className="form-group col-md-12">
+  <img src={this.state.urlFireBase || 'http://via.placeholder.com/400x300'} alt="Uploaded images"  
+    className="rounded-circle" height="150" width="150"/>
+  </div>
+  </div>
+
  <form>
   <div className="form-row">
-    <div className="form-group col-md-6">
-      <label for="inputCity">Nome do Produto</label>
-      <input type="text" className="form-control" id="inputCity" onChange = {(event) => this.setState({productName:event.target.value})}/>
+    <div className="form-group col-md-12">
+      <label for="inputCity">Descreva porque trocar:</label>
+      <textarea id="story" name="story"  className="form-control"  onChange = {(event) => this.setState({productName:event.target.value})}
+          rows="5" cols="33"></textarea>
+      
     </div>
-    <div className="form-group col-md-4">
+    <div className="form-group col-md-12">
       <label for="inputEstado">Categoria </label>
       <select id="inputEstado" className="form-control" onChange={(event) => this.setState({category:event.target.value})}>
         <option selected>Escolher...</option>
@@ -114,25 +124,21 @@ class ImageUploadBase extends Component {
         <option>Relógio</option>
       </select>
     </div>
+    <div id="container-button">
 
-    <div className="form-group col-md-2">
-  
-    <div class="button-wrapper"><span class="label">Carregar Imagem</span>
-  
-    <input type="file" name="upload" id="upload" class="btn btn-primary" placeholder="Upload File" onChange={this.handleChange}/>
+          <div className="form-group" >
+        
+          <div class="button-wrapper"><span class="label">Carregar Imagem</span>
 
+          <input type="file" name="upload" id="upload" class="btn btn-primary" placeholder="Upload File" onChange={this.handleChange}/>
+
+        </div>
+        </div>
+        <div className="form-group ">
+          <button type="submit" className="btn btn-primary"  onClick={(event) => this.handleSubmit(event)}>Gravar Produto</button>
+      </div>
     </div>
-  
-
-    </div>
-
-  </div>
-  <div className="form-row">
-  <div className="form-group col-md-2">
-  <img src={this.state.urlFireBase || 'http://via.placeholder.com/400x300'} alt="Uploaded images" height="300" width="400"/>
-  </div>
-  </div>
-  <button type="submit" className="btn btn-primary"  onClick={(event) => this.handleSubmit(event)}>Gravar Produto</button>
+</div>
 </form>
 
  </div>
