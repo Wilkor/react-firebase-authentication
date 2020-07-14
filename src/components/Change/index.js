@@ -20,6 +20,7 @@ const   Change = () => {
     const [matchDev,setMatchDev] = useState(null)
     const [user, setUser] = useState('');
     const [url, setUrl] = useState('')
+     const [count, setCount] = useState(0);
 
     const socket = io('https://tindev-wilkor-backend.herokuapp.com', {
       query:{user:user}
@@ -38,7 +39,7 @@ const   Change = () => {
 
   useEffect( () => {
     
-      setTimeout( async () => {
+      setTimeout(async() => {
          
         const userId =  localStorage.getItem('_id');
         setUser(userId)
@@ -48,25 +49,23 @@ const   Change = () => {
 
       }, 400)
  
-  },[])
+  },[count])
 
 
   async function handleDislike(id) {
-    
+
     await api.post(`/user/${id}/dislikes`,null,{headers:{
-        user:user
+        user:id
     }})
 
-     
-    const newProduct = product.filter(product=> product.user != id)
-     setProduct(newProduct);
+    setCount(count+1)
  }
 
  async function handleLike(id) {
 
       await api.post(`/user/${id}/likes`,null,{headers:{user: user}})
       setProduct(product);
-     
+      setCount(count+1)
  }
 
 
@@ -109,7 +108,7 @@ const   Change = () => {
 
           <div className="buttons">
 
-          <button type="button" onClick={() => handleDislike(produto.user)}>
+          <button type="button" onClick={() => handleDislike(produto._id)}>
           <img src={dislike} alt="dislike"/>
           </button>
           <button type="button"  onClick={() => handleLike(produto.user)}>

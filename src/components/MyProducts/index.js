@@ -51,7 +51,7 @@ class MyProducts extends Component {
 
      if(res){
 
-       NotificationManager.success('Produto cadastrado com sucesso!', 'Concluido!');
+       NotificationManager.success('Produto excluido com sucesso!', 'Concluido!');
        this.handleGetProducts();
      }
     }).catch(err => {
