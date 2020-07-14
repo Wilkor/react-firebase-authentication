@@ -20,7 +20,7 @@ const SignInPage = () => (
 		</div>
 
      {/*<h1>Entrar</h1>
-     <SignInFacebook/>
+        <SignInFacebook/>
     <SignInForm />
     <SignInGoogle />
     <SignInFacebook />

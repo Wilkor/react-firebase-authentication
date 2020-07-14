@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 class MessageItem extends Component {
   constructor(props) {
     super(props);
@@ -27,6 +28,9 @@ class MessageItem extends Component {
     this.setState({ editMode: false });
   };
 
+   
+
+
   render() {
     const { authUser, message, onRemoveMessage } = this.props;
     const { editMode, editText } = this.state;
@@ -41,32 +45,41 @@ class MessageItem extends Component {
           />
         ) : (
           <span>
-            <strong>{message.userId}</strong> {message.text}
-            {message.editedAt && <span>(Edited)</span>}
-          </span>
-        )}
+            <a className="navbar-brand" href="#">
+                <img src={message.avatar}  
+                className="rounded-circler-commnets" alt="" width="30px"/></a>
+                <span className="messageBox backgroundBlue">{message.text}</span>
+                 {message.editedAt && <span>(Editado)</span>}
 
-        {authUser.uid === message.userId && (
-          <span>
+                 {authUser.uid === message.userId && (
+          <>
+          <br/>
             {editMode ? (
               <span>
-                <button onClick={this.onSaveEditText}>Save</button>
-                <button onClick={this.onToggleEditMode}>Reset</button>
+                <button  className="sendMessage" onClick={this.onSaveEditText}>Salvar</button>
+                <button  className="sendMessage" onClick={this.onToggleEditMode}>Voltar</button>
               </span>
             ) : (
-              <button onClick={this.onToggleEditMode}>Edit</button>
+              ''
             )}
 
             {!editMode && (
               <button
+              className="sendMessage"
                 type="button"
                 onClick={() => onRemoveMessage(message.uid)}
               >
-                Delete
+                Apagar
               </button>
             )}
+         </>
+        )}
+
+            <hr/>
           </span>
         )}
+
+       
       </li>
     );
   }

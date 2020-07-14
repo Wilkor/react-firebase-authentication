@@ -4,9 +4,11 @@ import like from  '../../assets/like.svg';
 import emojiTriste from  '../../assets/emojiTriste.png';
 import { Link } from "react-router-dom";
 
-
+import  Comments from '../Messages/index'
 import api from '../../Service/api';
 import io from 'socket.io-client'
+import {NotificationContainer, NotificationManager} from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
 
 
 import itsamatch from '../../assets/itsamatch.png';
@@ -25,10 +27,10 @@ const   Change = () => {
 
     socket.on('match', dev => {
     
-        setMatchDev(dev);
-        const {user} = JSON.parse(localStorage.getItem('userObject'));
-        setUrl(`/join?name=${user.displayName}&room=changeme`)
-
+        NotificationManager.success(`${dev.name}Produto cadastrado com sucesso!`, 'Notificação!');
+        // setMatchDev(dev);
+        // const {user} = JSON.parse(localStorage.getItem('userObject'));
+        // setUrl(`/join?name=${user.displayName}&room=changeme`)
 
     })
 
@@ -51,20 +53,20 @@ const   Change = () => {
 
   async function handleDislike(id) {
     
-    await api.post(`/user/${user}/dislikes`,null,{headers:{
-        user:id
+    await api.post(`/user/${id}/dislikes`,null,{headers:{
+        user:user
     }})
 
      
-    const newProduct = product.filter(user=> user.user != id)
+    const newProduct = product.filter(product=> product.user != id)
      setProduct(newProduct);
  }
 
  async function handleLike(id) {
 
-      await api.post(`/user/${user}/likes`,null,{headers:{user: id}})
+      await api.post(`/user/${id}/likes`,null,{headers:{user: user}})
       console.log('produto', product)
-      const newProduct = product.filter(user=> user.user != id)
+      const newProduct = product.filter(product => product.user != id)
       setProduct(newProduct);
      
  }
@@ -83,6 +85,28 @@ const   Change = () => {
           <footer>
           <strong>{produto.category}</strong>
           <p>{produto.productName}</p>
+
+          <div id="accordion">
+            <div class="card">
+              <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                  <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Comentários
+                  </button>
+                </h5>
+              </div>
+
+              <div id="collapseOne" class="collapse collapsed" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                
+                 <Comments product={produto._id}/>
+                </div>
+              </div>
+            </div>
+  
+       
+          </div>
+
           </footer>
 
           <div className="buttons">
@@ -93,6 +117,7 @@ const   Change = () => {
           <button type="button"  onClick={() => handleLike(produto.user)}>
           <img src={like} alt="like"/>
           </button>
+        
           
           </div>
 
@@ -121,7 +146,7 @@ const   Change = () => {
       )
        }
 
-          
+<NotificationContainer/>
               </div>
 
       </>

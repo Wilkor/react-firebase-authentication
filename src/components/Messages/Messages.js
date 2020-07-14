@@ -1,15 +1,143 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-import ScrollToBottom from 'react-scroll-to-bottom';
+import { AuthUserContext } from '../Session';
+import { withFirebase } from '../Firebase';
+import MessageList from './MessageList';
+import './main.css';
+class Messages extends Component {
+  constructor(props) {
+    super(props);
 
-import Message from './Message/Message';
+    this.state = {
+      text: '',
+      loading: false,
+      messages: [],
+      limit: 5,
+    };
+  }
 
-import './Messages.css';
+  componentDidMount() {
+    this.onListenForMessages();
+  }
 
-const Messages = ({ messages, name }) => (
-  <ScrollToBottom className="messages">
-    {messages.map((message, i) => <div key={i}><Message message={message} name={name}/></div>)}
-  </ScrollToBottom>
-);
+  onListenForMessages = () => {
+    this.setState({ loading: true });
 
-export default Messages;
+    this.props.firebase
+      .messages()
+      .orderByChild('createdAt')
+      .limitToLast(this.state.limit)
+      .on('value', snapshot => {
+        const messageObject = snapshot.val();
+
+        if (messageObject) {
+          const messageList = Object.keys(messageObject).map(key => ({
+            ...messageObject[key],
+            uid: key,
+          }));
+
+          this.setState({
+            messages: messageList.filter(messageProduct => messageProduct.product === this.props.product ),
+            loading: false,
+          });
+        } else {
+          this.setState({ messages: null, loading: false });
+        }
+      });
+  };
+
+  componentWillUnmount() {
+    this.props.firebase.messages().off();
+  }
+
+  onChangeText = event => {
+    this.setState({ text: event.target.value });
+  };
+
+  onCreateMessage = (event, authUser) => {
+    this.props.firebase.messages().push({
+      text: this.state.text,
+      userId: authUser.uid,
+      product: this.props.product,
+      avatar: authUser.providerData[0].photoURL,
+      createdAt: this.props.firebase.serverValue.TIMESTAMP,
+    });
+
+    this.setState({ text: '' });
+
+    event.preventDefault();
+  };
+
+  onEditMessage = (message, text) => {
+    const { uid, ...messageSnapshot } = message;
+
+    this.props.firebase.message(message.uid).set({
+      ...messageSnapshot,
+      text,
+      editedAt: this.props.firebase.serverValue.TIMESTAMP,
+    });
+  };
+
+  onRemoveMessage = uid => {
+    this.props.firebase.message(uid).remove();
+  };
+
+  onNextPage = () => {
+    this.setState(
+      state => ({ limit: state.limit + 5 }),
+      this.onListenForMessages,
+    );
+  };
+
+  render() {
+    const { text, messages, loading } = this.state;
+
+    return (
+      <AuthUserContext.Consumer>
+        {authUser => (
+          <div>
+            {!loading && messages && (
+              <button type="button" onClick={this.onNextPage}>
+                ler mais
+              </button>
+            )}
+
+            {loading && <div>Loading ...</div>}
+
+            {messages && (
+              <MessageList
+                authUser={authUser}
+                messages={messages}
+                onEditMessage={this.onEditMessage}
+                onRemoveMessage={this.onRemoveMessage}
+              />
+            )}
+
+                
+            {!messages && <div>{authUser.providerData[0].displayName}, Seja o primeiro a comentar isso ...</div>}
+             <br></br>
+            <form
+              onSubmit={event =>
+                this.onCreateMessage(event, authUser)
+              }
+            >
+        
+
+               <textarea id="story" name="story"  
+                  className="form-control"  
+                  onChange={this.onChangeText}
+                  value={text}
+                  rows="2" cols="33"></textarea>
+      
+                 <button className="sendMessage" type="submit"> Enviar </button>
+
+         
+            </form>
+          </div>
+        )}
+      </AuthUserContext.Consumer>
+    );
+  }
+}
+
+export default withFirebase(Messages);
