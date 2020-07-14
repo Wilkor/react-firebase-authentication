@@ -27,6 +27,7 @@ const   Change = () => {
 
     socket.on('match', dev => {
     
+
         NotificationManager.success(`Seu produto acabou de ser curtido por ${dev.name}`, 'Notificação!');
         // setMatchDev(dev);
         // const {user} = JSON.parse(localStorage.getItem('userObject'));
@@ -43,7 +44,6 @@ const   Change = () => {
         setUser(userId)
 
         const response = await api.get(`/product/${userId}`)
-        const newProduct = response.data.filter(user =>  user.user !== user)
         setProduct(response.data);
 
       }, 400)
@@ -65,9 +65,7 @@ const   Change = () => {
  async function handleLike(id) {
 
       await api.post(`/user/${id}/likes`,null,{headers:{user: user}})
-      console.log('produto', product)
-      const newProduct = product.filter(product => product.user != id)
-      setProduct(newProduct);
+      setProduct(product);
      
  }
 
@@ -80,6 +78,7 @@ const   Change = () => {
       {product.length > 0 ? (
           <ul> 
           {product.map(produto => (
+           
           <li key={produto._id}>
           <img src={produto.urlFireBase} alt="TinDev"/>
           <footer>
@@ -90,15 +89,14 @@ const   Change = () => {
             <div class="card">
               <div class="card-header" id="headingOne">
                 <h5 class="mb-0">
-                  <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  <button class="btn btn-link" data-toggle="collapse" data-target={"#collapseOne_" + produto._id} aria-expanded="true" aria-controls={"collapseOne_" + produto._id}>
                     Comentários
                   </button>
                 </h5>
               </div>
 
-              <div id="collapseOne" class="collapse collapsed" aria-labelledby="headingOne" data-parent="#accordion">
+              <div id={"collapseOne_"+ produto._id} class="collapse collapsed" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="card-body">
-                
                  <Comments product={produto._id}/>
                 </div>
               </div>

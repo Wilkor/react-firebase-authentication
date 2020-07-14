@@ -96,13 +96,13 @@ class Messages extends Component {
       <AuthUserContext.Consumer>
         {authUser => (
           <div>
-            {!loading && messages && (
-              <button type="button" onClick={this.onNextPage}>
-                ler mais
-              </button>
+            {!loading && messages &&  messages.product === this.props.product &&(
+              <a className="btn-link" onClick={this.onNextPage}>
+                Ver mais
+              </a>
             )}
 
-            {loading && <div>Loading ...</div>}
+            {loading && <div>Carregando ...</div>}
 
             {messages && (
               <MessageList
@@ -114,7 +114,7 @@ class Messages extends Component {
             )}
 
                 
-            {!messages && <div>{authUser.providerData[0].displayName}, Seja o primeiro a comentar isso ...</div>}
+            {!messages && <div><b>{authUser.providerData[0].displayName}</b>, Seja o primeiro a comentar isso ...</div>}
              <br></br>
             <form
               onSubmit={event =>
