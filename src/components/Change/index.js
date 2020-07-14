@@ -23,13 +23,12 @@ const   Change = () => {
       query:{user:user}
     })
 
-    socket.on('match',dev => {
+    socket.on('match', dev => {
+    
+        setMatchDev(dev);
+        const {user} = JSON.parse(localStorage.getItem('userObject'));
+        setUrl(`/join?name=${user.displayName}&room=changeme`)
 
-      alert(JSON.stringify(dev))
-      const obj = dev
-      setMatchDev(obj._doc);
-      const {user} = JSON.parse(localStorage.getItem('userObject'));
-      setUrl(`/join?name=${user.displayName}&room=${dev.idChat}`)
 
     })
 
