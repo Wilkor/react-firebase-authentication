@@ -27,7 +27,7 @@ const   Change = () => {
 
     socket.on('match', dev => {
     
-        NotificationManager.success(`${dev.name}Produto cadastrado com sucesso!`, 'Notificação!');
+        NotificationManager.success(`Seu produto acabou de ser curtido por ${dev.name}`, 'Notificação!');
         // setMatchDev(dev);
         // const {user} = JSON.parse(localStorage.getItem('userObject'));
         // setUrl(`/join?name=${user.displayName}&room=changeme`)
@@ -40,11 +40,11 @@ const   Change = () => {
       setTimeout( async () => {
          
         const userId =  localStorage.getItem('_id');
+        setUser(userId)
 
         const response = await api.get(`/product/${userId}`)
         const newProduct = response.data.filter(user =>  user.user !== user)
-        setProduct(newProduct);
-        setUser(userId)
+        setProduct(response.data);
 
       }, 400)
  
