@@ -10,7 +10,7 @@
 
 
 
-@media (max-width: 700px) and (min-width: 375px) {
+@media (max-width: 700px) and (min-width: 300px) {
 
 
 .main-container ul{
@@ -31,7 +31,8 @@ flex-direction: column;
 
 }
 .main-container ul li img {
-max-width: 100%;
+max-width: 99%;
+margin-left: 1px;
 }
 .main-container ul li footer {
 flex:1;
@@ -141,7 +142,7 @@ cursor:pointer;
 
 
 
-@media (min-width: 375px) and (max-width: 700px) {
+@media (min-width: 300px) and (max-width: 700px) {
 
 .main-container ul{
 
@@ -160,7 +161,8 @@ flex-direction: column;
 
 }
 .main-container ul li img {
-max-width: 100%;
+max-width: 90%;
+border-radius: 1%;
 }
 .main-container ul li footer {
 flex:1;
@@ -282,6 +284,7 @@ cursor:pointer;
    font-weight: 400;
    color: #444444;
    text-decoration: none;
+   margin-left: 54px;
 }
 .btn-link:hover {
    color: #444444;

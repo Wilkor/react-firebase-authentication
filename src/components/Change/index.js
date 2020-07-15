@@ -22,17 +22,20 @@ const   Change = () => {
     const [url, setUrl] = useState('')
      const [count, setCount] = useState(0);
 
-    const socket = io('https://tindev-wilkor-backend.herokuapp.com', {
+    const socket = io('http://localhost:3333', {
       query:{user:user}
     })
 
     socket.on('match', dev => {
     
 
-        NotificationManager.success(`Seu produto acabou de ser curtido por ${dev.name}`, 'Notificação!');
-        // setMatchDev(dev);
-        // const {user} = JSON.parse(localStorage.getItem('userObject'));
-        // setUrl(`/join?name=${user.displayName}&room=changeme`)
+       if (dev._id !== user) {
+
+         NotificationManager.success(`Seu produto acabou de ser curtido por ${dev.name}`, 'Notificação!');
+         // setMatchDev(dev);
+         // const {user} = JSON.parse(localStorage.getItem('userObject'));
+         // setUrl(`/join?name=${user.displayName}&room=changeme`)
+       }
 
     })
 
@@ -66,6 +69,7 @@ const   Change = () => {
       await api.post(`/user/${id}/likes`,null,{headers:{user: user}})
       setProduct(product);
       setCount(count+1)
+      NotificationManager.success(`Produto curtido!`, 'Notificação!');
  }
 
 
@@ -89,7 +93,7 @@ const   Change = () => {
               <div class="card-header" id="headingOne">
                 <h5 class="mb-0">
                   <button class="btn btn-link" data-toggle="collapse" data-target={"#collapseOne_" + produto._id} aria-expanded="true" aria-controls={"collapseOne_" + produto._id}>
-                    Comentários
+                    Ver comentários
                   </button>
                 </h5>
               </div>
@@ -111,7 +115,7 @@ const   Change = () => {
           <button type="button" onClick={() => handleDislike(produto._id)}>
           <img src={dislike} alt="dislike"/>
           </button>
-          <button type="button"  onClick={() => handleLike(produto.user)}>
+          <button type="button"  onClick={() => handleLike(produto._id)}>
           <img src={like} alt="like"/>
           </button>
         

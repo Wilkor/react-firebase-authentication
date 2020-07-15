@@ -125,9 +125,12 @@ class Messages extends Component {
 
                <textarea id="story" name="story"  
                   className="form-control"  
+                  placeholder="Escreva um comentário..."
                   onChange={this.onChangeText}
                   value={text}
-                  rows="2" cols="33"></textarea>
+                  rows="2" cols="33">
+                  
+                  </textarea>
       
                  <button className="sendMessage" type="submit"> Enviar </button>
 

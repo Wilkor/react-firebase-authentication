@@ -158,7 +158,8 @@ flex-direction: column;
 
 }
 .main-container ul li img {
-max-width: 100%;
+max-width: 99%;
+max-height:50%;
 }
 .main-container ul li footer {
 flex:1;
