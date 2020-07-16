@@ -298,12 +298,12 @@ body {
   background-color: #c2185b;
   border-color: #c2185b;
 }
-@media (min-width: 300px) and (max-width: 700px) {
+@media (min-width: 375px) and (min-height: 667px) {
 #myNavbar {
   margin-top:10px;
   display: flex;
   justify-content: space-around;
-  margin-top: 144%;
+  margin-top: 130%;
   background: #fff;
   border-top: 0.5px solid#b6b6b6;
   
@@ -332,35 +332,50 @@ body {
     margin-top: -6px;
   }
 }
-#myNavbar {
-  margin-top:10px;
-  display: flex;
-  justify-content: space-around;
-  margin-top: 144%;
-  background: #fff;
-  border-top: 0.5px solid#b6b6b6;
-  
+
+
+@media (min-width: 360px) and (max-width: 640px) {
+
+  .navbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    height: 100px;
 }
 
-  #myNavbar  button {
-      height: 20px;
-      width: 25%;
-      
-      border:0;
-      border-radius: 4px;
-      background:  #fff;
-      margin-top: -4px;
-      cursor:pointer
+  #myNavbar {
+    margin-top:10px;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 138%;
+    background: #fff;
+    border-top: 0.5px solid#b6b6b6;
+   
+    
   }
   
-  #button-nav-bottom-1 {
-    margin-top: -6px;
-  }
-
-  #button-nav-bottom-2 {
-    margin-top: -6px;
-  }
-
-  #button-nav-bottom-3 {
-    margin-top: -6px;
+    #myNavbar  button {
+        height: 20px;
+        width: 25%;
+        border:0;
+        border-radius: 4px;
+        background:  #fff;
+        margin-top: -4px;
+        cursor:pointer;
+        
+    }
+    
+    #button-nav-bottom-1 {
+      margin-top: -70px;
+    }
+  
+    #button-nav-bottom-2 {
+      margin-top: -70px;
+    }
+  
+    #button-nav-bottom-3 {
+      margin-top: -70px;
+    }
   }
