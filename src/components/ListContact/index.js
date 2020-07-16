@@ -26,8 +26,7 @@ const ListContact = () => {
           return {...users, linkChat:`/chat?name=${user.displayName}&room=${uuidv4()}&idUser=${users._id}`}
 
 
-        })
-        //.filter(users => userIdLogged !== users._id)
+        }).filter(users => userIdLogged !== users._id)
         
         setUserOnLine(responseWithLinkChat);
     
