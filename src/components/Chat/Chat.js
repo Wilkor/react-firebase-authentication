@@ -23,9 +23,7 @@ const Chat = ({ location }) => {
 
     api.post('/invite', {name, room, idUser});
 
-    socket = io(ENDPOINT, {
-      query:{user:idUser}
-    });
+    socket = io(ENDPOINT);
 
     setRoom(room);
     setName(name)
