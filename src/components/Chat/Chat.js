@@ -57,12 +57,12 @@ const Chat = ({ location }) => {
   return (
    
 
-    <>
+    < >
 
-
+        <main  role="main" className="container">
           <Transcription messages={messages} name={name} />
- 
           <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
+        </main>
     </>
     
   );

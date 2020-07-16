@@ -1,6 +1,6 @@
 .messages {
-  margin-top: 100px;
+  margin-top: 10px;
   overflow-y: scroll; 
-  height: 396px;
+  height: 480px;
   background: #eff1f5;
 }
