@@ -49,7 +49,7 @@ const Change = (router) => {
       const {user} = JSON.parse(localStorage.getItem('userObject'))
         NotificationManager.success(`${inviteData.message}`, 'Chat', 5000,  () => {
 
-          router.history.push(`/chat?name=Juliette&room=${inviteData.room}`)
+          router.history.push(`/chat?name=${user.displayName}&room=${inviteData.room}`)
 
         })
   

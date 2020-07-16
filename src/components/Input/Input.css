@@ -1,11 +1,7 @@
 .form {
-
-
   display: flex;
   border-top: 2px solid #D3D3D3;
   margin-bottom: 3x;
-
- 
 }
 
 .input {
@@ -28,7 +24,7 @@ input:focus, textarea:focus, select:focus{
   padding: 10px;
   display: inline-block;
   border: none;
-  width:1%;
+  width:20%;
   border-radius: 5px;
   
 }
