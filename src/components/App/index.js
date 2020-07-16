@@ -16,7 +16,8 @@ import MyProducts from '../../components/MyProducts/index';
 import Profile from '../../components/MyProfile/index';
 import Notification from '../../components/Messages/Messages';
 
-import Join from '../../components/Join/Join';
+import ListContact from '../../components/ListContact/index';
+
 import Chat from '../../components/Chat/Chat';
 
 
@@ -33,12 +34,12 @@ const App = () => (
         path={ROUTES.PASSWORD_FORGET}
         component={PasswordForgetPage} 
       />
+      <Route path={ROUTES.LIST} component={ListContact} />
+      <Route path={ROUTES.CHAT} component={Chat} />
       <Route path={ROUTES.HOME} component={HomePage} />
       <Route path={ROUTES.PRODUCT} component={Product} />
-      <Route path={ROUTES.CHANGE} component={Change} />
+      <Route path={ROUTES.CHANGE} component={Change} history={Route} />
       <Route path={ROUTES.MYPRODUCTS} component={MyProducts} />
-      <Route path={ROUTES.JOIN}  component={Join} />
-      <Route path={ROUTES.CHAT} component={Chat} />
     </div>
   </Router>
 );

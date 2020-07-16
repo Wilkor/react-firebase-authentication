@@ -4,7 +4,7 @@ import { compose } from 'recompose';
 import { withFirebase } from '../../Firebase';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
-
+import camera from '../../../assets/camera.svg'
 import api from '../../../Service/api';
 
 
@@ -105,7 +105,7 @@ class ImageUploadBase extends Component {
       <main role="main" className="container">
              <br/>  <br/> <br/>  
       <div className="my-3 p-3 bg-white rounded shadow-sm">
-          <h4 className="border-bottom border-gray pb-2 mb-0">Incluir Produto</h4>
+          <h4 className="border-bottom border-gray pb-2 mb-0"></h4>
           <br/>
             <div className="form-group text-grey">
 
@@ -139,7 +139,7 @@ class ImageUploadBase extends Component {
                
                   <div className="form-group" >
                 
-                  <div class="button-wrapper"><span class="label">Carregar Imagem</span>
+                  <div class="button-wrapper"><span class="label"><img src={camera} width="30px"/></span>
 
                   <input type="file" name="upload" id="upload" class="btn btn-primary" placeholder="Upload File" onChange={this.handleChange}/>
 

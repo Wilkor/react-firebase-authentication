@@ -1,0 +1,98 @@
+.messageBox {
+  float: right;
+  max-width: -webkit-calc(100% - 30px);
+  max-width: -moz-calc(100% - 30px);
+  max-width: calc(100% - 30px);
+  padding: 10px 19px;
+  text-align: left;
+  margin-top: 10px;
+  -webkit-border-radius: 13px 2px 13px 13px;
+  -moz-border-radius: 13px 2px 13px 13px;
+  border-radius: 13px 2px 13px 13px;
+  -webkit-box-shadow: 0 -1px 12px 0 rgba(0,0,0,.1);
+  -moz-box-shadow: 0 -1px 12px 0 rgba(0,0,0,.1);
+  box-shadow: 0 -1px 12px 0 rgba(0,0,0,.1);
+  ;
+  word-wrap: break-word;
+}
+
+.messageBox-otherUser {
+  -webkit-border-radius: 2px 13px 13px 13px;
+  -moz-border-radius: 2px 13px 13px;
+  border-radius: 2px 13px 13px;
+  display: inline-block;
+  width: -webkit-calc(100% - 30px);
+  width: -moz-calc(100% - 30px);
+  width: calc(100% - 30px);
+  margin: 10px 0 10px 30px;
+  padding: 11px;
+  line-height: 20px;
+  position: relative;
+  text-align: left;
+  -webkit-box-shadow: 0 -1px 12px 0 rgba(0,0,0,.1);
+  -moz-box-shadow: 0 -1px 12px 0 rgba(0,0,0,.1);
+  box-shadow: 0 -1px 12px 0 rgba(0,0,0,.1);
+}
+
+
+.messageText {
+  width: 100%;
+  letter-spacing: 0;
+  float: left;
+  font-size: 0.9em;
+ 
+}
+
+.messageText img {
+  vertical-align: middle;
+}
+
+.messageContainer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 1%;
+  margin-top: 8px;
+}
+
+.sentText {
+  display: flex;
+  align-items: center;
+  font-family: Helvetica;
+  color: #828282;
+  letter-spacing: 0.3px;
+}
+
+.pl-10 {
+  padding-left: 10px;
+  
+}
+
+.pr-10 {
+  padding-right: 10px;
+}
+
+.justifyStart {
+  margin-left: -30px;
+}
+
+.justifyEnd {
+  justify-content: flex-end;
+}
+
+.colorWhite {
+  background: #fff;
+  color: #738192;
+}
+
+.colorDark {
+  background: #fff;
+  color: #738192;
+}
+
+.backgroundBlue {
+  background: #ffffff;
+}
+
+.backgroundLight {
+  background: #F3F3F3;
+}

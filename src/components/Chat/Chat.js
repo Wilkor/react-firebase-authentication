@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import queryString from 'query-string';
 import io from "socket.io-client";
-import Messages from '../Messages/Messages';
+import Transcription from '../Transcription/Message';
 import InfoBar from '../InfoBar/InfoBar';
 import Input from '../Input/Input';
-
+import environment from '../../constants/environment';
+import api from '../../Service/api'
 import './Chat.css';
 
 let socket;
@@ -14,10 +15,13 @@ const Chat = ({ location }) => {
   const [room, setRoom] = useState('');
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
-  const ENDPOINT = 'https://chat-docs-backend.herokuapp.com/';
+  const ENDPOINT = environment.HOST;
 
   useEffect(() => {
-    const { name, room } = queryString.parse(location.search);
+
+    const { name, room, idUser } = queryString.parse(location.search);
+
+    api.post('/invite', {name, room, idUser});
 
     socket = io(ENDPOINT);
 
@@ -34,6 +38,9 @@ const Chat = ({ location }) => {
   useEffect(() => {
     socket.on('message', message => {
       setMessages(messages => [ ...messages, message ]);
+
+
+
     });
     
   
@@ -49,15 +56,15 @@ const Chat = ({ location }) => {
 
   return (
    
-    <div className="outerContainer">
-      <div className="container">
-    
-          <InfoBar room={room} />
-          <Messages messages={messages} name={name} />
+
+    <>
+
+
+          <Transcription messages={messages} name={name} />
+ 
           <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
-      </div>
-     
-    </div>
+    </>
+    
   );
 }
 

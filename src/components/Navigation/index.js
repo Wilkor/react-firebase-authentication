@@ -3,12 +3,20 @@ import { Link } from 'react-router-dom';
 
 import { AuthUserContext } from '../Session';
 import SignOutButton from '../SignOut';
+import sino from '../../assets/sino.svg'
+import comment from '../../assets/comente.svg'
+import home from '../../assets/navegador.svg'
+
+
 
 const Navigation = () => (
   <AuthUserContext.Consumer>
     {authUser =>
       authUser ? (
+        <>
         <NavigationAuth authUser={authUser} />
+        <NavBottom/>
+        </>
       ) : (
         <NavigationNonAuth />
       )
@@ -16,11 +24,34 @@ const Navigation = () => (
   </AuthUserContext.Consumer>
 );
 
+
+const NavBottom = () => (
+  	<>	
+<div class="navbar" id="myNavbar">
+
+
+<button type="button"  onClick="">
+<Link to="/change"><img src={home} id="button-nav-bottom-1" alt="dislike" width="18px"/></Link>
+</button>
+<button type="button"  onClick="">
+<Link to="/listcontact"><img src={comment} id="button-nav-bottom-2" alt="like" width="18px"/></Link>
+</button>
+<button type="button"  onClick="">
+<img src={sino} id="button-nav-bottom-3" alt="like" width="18px"/>
+</button>
+
+</div>
+
+</>
+  )
+
+
 const NavigationAuth = ({ authUser }) => (
 
   <>
   <nav className="navbar navbar-expand-lg navbar-light bg-light navbar navbar-dark bg-dark">
-  <Link className="navbar-brand" to="#"><img src={authUser.providerData[0].photoURL}  className="rounded-circle" alt="" width="50"/></Link>
+  <Link className="navbar-brand" to="#"><img src={authUser.providerData[0].photoURL}  className="rounded-circle" alt="" width="50px"/></Link>
+
   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span className="navbar-toggler-icon"></span>
   </button>
@@ -56,6 +87,7 @@ const NavigationAuth = ({ authUser }) => (
 
   </div>
 </nav>
+
 </>
 );
 

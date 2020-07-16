@@ -13,3 +13,4 @@ export const PROFILE = '/profile';
 export const MESSAGE = '/notification';
 export const CHAT = '/chat';
 export const JOIN = '/join';
+export const LIST = '/listcontact';

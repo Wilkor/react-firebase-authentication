@@ -9,35 +9,53 @@ import api from '../../Service/api';
 import io from 'socket.io-client'
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
-
+import environment from '../../constants/environment';
 
 import itsamatch from '../../assets/itsamatch.png';
 import './main.css';
 
-const   Change = () => {
+
+
+
+
+const Change = (router) => {
+
+
 
     const [product,setProduct] = useState([])
     const [matchDev,setMatchDev] = useState(null)
     const [user, setUser] = useState('');
-    const [url, setUrl] = useState('')
-     const [count, setCount] = useState(0);
+    //const [url, setUrl] = useState('')
+    const [count, setCount] = useState(0);
+    const [invite, setInvite] = useState('');
 
-    const socket = io('https://tindev-wilkor-backend.herokuapp.com', {
+
+    const socket = io(environment.HOST, {
       query:{user:user}
     })
 
-    socket.on('match', dev => {
+    socket.on('like', dev => {
     
-
        if (dev._id !== user) {
 
          NotificationManager.success(`Seu produto acabou de ser curtido por ${dev.name}`, 'Notificação!');
-         // setMatchDev(dev);
-         // const {user} = JSON.parse(localStorage.getItem('userObject'));
-         // setUrl(`/join?name=${user.displayName}&room=changeme`)
+   
        }
-
     })
+
+    
+    socket.on('invitation', inviteData => {
+
+      const {user} = JSON.parse(localStorage.getItem('userObject'))
+        NotificationManager.success(`${inviteData.message}`, 'Chat', 5000,  () => {
+
+          router.history.push(`/chat?name=Juliette&room=${inviteData.room}`)
+
+        })
+  
+   })
+
+
 
 
   useEffect( () => {
@@ -140,7 +158,7 @@ const   Change = () => {
          <img src={itsamatch} alt="its a match"/>
          <img className="avatar" src={matchDev.urlFireBase} alt="avatar"/>
          <strong>{matchDev.name}</strong>
-         <Link to={url}>Ir para o Chat</Link>
+         {/* <Link to={url}>Ir para o Chat</Link> */}
         </div>
 
 
@@ -149,6 +167,8 @@ const   Change = () => {
 
 <NotificationContainer/>
               </div>
+    
+
 
       </>
   )
