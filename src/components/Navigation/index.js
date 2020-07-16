@@ -63,6 +63,14 @@ const NavigationAuth = ({ authUser }) => (
       <Link to="/change" className="nav-link" href="#">Feed de Troca</Link>
         
       </li>
+      <li className="nav-item active">
+      <Link to="/notification" className="nav-link" href="#">Notificação</Link>
+        
+      </li>
+      <li className="nav-item active">
+      <Link to="/listcontact" className="nav-link" href="#">Chat</Link>
+        
+      </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Produto
