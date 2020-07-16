@@ -15,7 +15,7 @@ const Navigation = () => (
       authUser ? (
         <>
         <NavigationAuth authUser={authUser} />
-        <NavBottom/>
+       
         </>
       ) : (
         <NavigationNonAuth />
@@ -64,7 +64,7 @@ const NavigationAuth = ({ authUser }) => (
         
       </li>
       <li className="nav-item active">
-      <Link to="/notification" className="nav-link" href="#">Notificação</Link>
+      <Link to="/notification" className="nav-link" href="#">Notificações</Link>
         
       </li>
       <li className="nav-item active">

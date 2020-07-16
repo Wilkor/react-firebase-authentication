@@ -14,7 +14,7 @@ import Product from '../../components/Product/IncludeProduct/index';
 import Change from '../../components/Change/index';
 import MyProducts from '../../components/MyProducts/index';
 import Profile from '../../components/MyProfile/index';
-import Notification from '../../components/Messages/Messages';
+import Notification from '../../components/Notification/index';
 
 import ListContact from '../../components/ListContact/index';
 
@@ -34,12 +34,13 @@ const App = () => (
         path={ROUTES.PASSWORD_FORGET}
         component={PasswordForgetPage} 
       />
-      <Route path={ROUTES.LIST} component={ListContact} />
-      <Route path={ROUTES.CHAT} component={Chat} />
-      <Route path={ROUTES.HOME} component={HomePage} />
-      <Route path={ROUTES.PRODUCT} component={Product} />
-      <Route path={ROUTES.CHANGE} component={Change} history={Route} />
+      <Route path={ROUTES.LIST}       component={ListContact} />
+      <Route path={ROUTES.CHAT}       component={Chat} />
+      <Route path={ROUTES.HOME}       component={HomePage} />
+      <Route path={ROUTES.PRODUCT}    component={Product} />
+      <Route path={ROUTES.CHANGE}     component={Change} history={Route} />
       <Route path={ROUTES.MYPRODUCTS} component={MyProducts} />
+      <Route path={ROUTES.MESSAGE} component={Notification} />
     </div>
   </Router>
 );
