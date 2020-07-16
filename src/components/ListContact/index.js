@@ -37,6 +37,9 @@ const ListContact = () => {
 
  return (
   <>
+
+<main role="main" className="container">
+
         <div class="container">
           <div class="row">
             <div class="col-12 col-sm-8 col-lg-5">
@@ -60,7 +63,7 @@ const ListContact = () => {
             </div>
           </div>
         </div>
-                
+            </main>    
         </>
 
  )

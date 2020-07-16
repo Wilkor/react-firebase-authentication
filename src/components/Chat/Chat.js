@@ -23,7 +23,9 @@ const Chat = ({ location }) => {
 
     api.post('/invite', {name, room, idUser});
 
-    socket = io(ENDPOINT);
+    socket = io(ENDPOINT, {
+      query:{user:idUser}
+    });
 
     setRoom(room);
     setName(name)
@@ -59,7 +61,7 @@ const Chat = ({ location }) => {
 
     < >
 
-        <main  role="main" className="container">
+        <main  role="main" className="container" id="transcript-chat">
           <Transcription messages={messages} name={name} />
           <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
         </main>

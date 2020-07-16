@@ -20,8 +20,6 @@ import './main.css';
 
 const Change = (router) => {
 
-
-
     const [product,setProduct] = useState([])
     const [matchDev,setMatchDev] = useState(null)
     const [user, setUser] = useState('');
@@ -54,8 +52,6 @@ const Change = (router) => {
         })
   
    })
-
-
 
 
   useEffect( () => {
@@ -93,7 +89,7 @@ const Change = (router) => {
 
     return (
       <>
-  
+  <main role="main" className="container">
       <div className="main-container">
        
       {product.length > 0 ? (
@@ -167,7 +163,7 @@ const Change = (router) => {
 
 <NotificationContainer/>
               </div>
-    
+              </main>
 
 
       </>

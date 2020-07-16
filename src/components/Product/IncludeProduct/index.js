@@ -103,14 +103,7 @@ class ImageUploadBase extends Component {
 
    
       <main role="main" className="container">
-             <br/>  <br/> <br/>  
-      <div className="my-3 p-3 bg-white rounded shadow-sm">
-          <h4 className="border-bottom border-gray pb-2 mb-0"></h4>
-          <br/>
-            <div className="form-group text-grey">
-
-          
-        
+    
             <div className="form-group col-md-12">
 
             <img src={this.state.urlFireBase || 'http://via.placeholder.com/400x300'} alt="Uploaded images"  
@@ -145,18 +138,13 @@ class ImageUploadBase extends Component {
 
                 </div>
                 </div>
-                <div className="form-group ">
+                <div className="form-group col-md-12">
                   <button type="submit" className="btn btn-primary"  onClick={(event) => this.handleSubmit(event)}>Gravar Produto</button>
               </div>
             </div>
-    
           </form>
-
-
-        
-            </div>
             <NotificationContainer/>
-        </div>
+    
     </main>
       
     )

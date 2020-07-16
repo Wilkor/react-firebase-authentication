@@ -1,7 +1,7 @@
 
 
 const environment = {
-   HOST:'https://tindev-wilkor-backend.herokuapp.com',
+   HOST:'http://localhost:3333',
   SERVER:'https://tindev-wilkor-backend.herokuapp.com'
 }
 

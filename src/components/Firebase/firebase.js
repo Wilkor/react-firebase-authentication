@@ -2,7 +2,7 @@ import app from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
 import 'firebase/storage';
-
+import api from '../../Service/api'
 
 const config = {
   apiKey: "AIzaSyAM7Vdv8QrMOr8PHswMaM7uLL_auFay0RY",
@@ -52,9 +52,19 @@ class Firebase {
   doSignInWithTwitter = () =>
     this.auth.signInWithPopup(this.twitterProvider);
 
-  doSignOut = () => {
-    this.auth.signOut();
-    localStorage.clear();
+  doSignOut =  () => {
+
+
+    api.post('/logout', {user:this.auth.currentUser.uid}).then(res => {
+
+       if(res) {
+         
+         this.auth.signOut();
+         localStorage.clear();
+
+       }
+    })
+
   }
 
   doPasswordReset = email => this.auth.sendPasswordResetEmail(email);

@@ -303,6 +303,12 @@ body {
 @media (min-width: 360px) and (max-width: 640px) {
 
 
+  #transcript-chat {
+
+    width:354px;
+
+  }
+
   #myNavbar {
     margin-top:10px;
     display: flex;
@@ -336,4 +342,8 @@ body {
     #button-nav-bottom-3 {
       margin-top: -08px;
     }
+
+
   }
+
+
