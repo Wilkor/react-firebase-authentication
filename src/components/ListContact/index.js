@@ -38,32 +38,27 @@ const ListContact = () => {
  return (
   <>
 
-<main role="main" className="container">
-
-        <div class="container">
-          <div class="row">
-            <div class="col-12 col-sm-8 col-lg-5">
-              <h6 class="text-muted">Pessoas On-line</h6> 
+            <br/> <br/>   <br/> <br/>  <br/>   <br/>
+              <ul   class="list-group">
+                <li class="list-group-item active">Amigas On-Line</li>
                 {
                   userOnLine.map( user  => (
-                     
-                <ul key={user._id} class="list-group">
                   <Link to={user.linkChat}> 
-                    <li  class="list-group-item d-flex justify-content-between align-items-center">
+                      <li class="list-group-item">
                       <div class="image-parent">
                           <img src={user.urlFireBase} class="rounded-circle" alt="quixote"/>
                       </div>
-                     {user.name}
-                    </li>
+                       {user.name}
+                      </li>   
+               
                     </Link>
-                </ul>
+             
 
                 ))}
-
-            </div>
-          </div>
-        </div>
-            </main>    
+                </ul>
+         
+      
+         
         </>
 
  )

@@ -3,6 +3,10 @@ import React, { Component } from 'react';
 import { AuthUserContext } from '../Session';
 import { withFirebase } from '../Firebase';
 import MessageList from './MessageList';
+
+import api from '../../Service/api';
+
+
 import './main.css';
 class Messages extends Component {
   constructor(props) {
@@ -63,8 +67,13 @@ class Messages extends Component {
       createdAt: this.props.firebase.serverValue.TIMESTAMP,
     });
 
-    this.setState({ text: '' });
+    api.post('/comments', {
+      name:authUser.providerData[0].displayName,
+      product: this.props.product,
+      avatar: authUser.providerData[0].photoURL
+    }).then(res => console.log(res)).catch(error => console.log(error))
 
+    this.setState({ text: '' });
     event.preventDefault();
   };
 

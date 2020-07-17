@@ -3,7 +3,7 @@ import dislike from  '../../assets/dislike.svg';
 import like from  '../../assets/like.svg';
 import emojiTriste from  '../../assets/emojiTriste.png';
 import { Link } from "react-router-dom";
-
+import queryString from 'query-string';
 import  Comments from '../Messages/index'
 import api from '../../Service/api';
 import io from 'socket.io-client'
@@ -20,13 +20,15 @@ import './main.css';
 
 const Change = (router) => {
 
+
+  console.log(router.location)
+  const { productId } = queryString.parse(router.location.search);
+
     const [product,setProduct] = useState([])
     const [matchDev,setMatchDev] = useState(null)
     const [user, setUser] = useState('');
     //const [url, setUrl] = useState('')
     const [count, setCount] = useState(0);
-    const [invite, setInvite] = useState('');
-
 
     const socket = io(environment.HOST, {
       query:{user:user}
@@ -50,24 +52,50 @@ const Change = (router) => {
           router.history.push(`/chat?name=${user.displayName}&room=${inviteData.room}`)
 
         })
+
+        
   
    })
 
+   socket.on('comments', commentsData => {
 
-  useEffect( () => {
-    
-      setTimeout(async() => {
-         
-        const userId =  localStorage.getItem('_id');
-        setUser(userId)
+          const user = JSON.parse(localStorage.getItem('authUser'));
+        
+         const  message = user.providerData[0].displayName === commentsData.name ? 'Você acabou de fazer um comentário em seu post' :  commentsData.message
+        
+       NotificationManager.success(`${message}`, 'Comentário', 5000,  () => {
 
-        const response = await api.get(`/product/${userId}`)
-        setProduct(response.data);
+       router.history.push(`/change?productId=${commentsData.product}`)
 
-      }, 400)
+     })
+
+ })
+
+
+      useEffect( () => {
+
+  
+
+            setTimeout( async () => {
+            
+              const userId =  localStorage.getItem('_id');
+              setUser(userId)
+  
+              const response = await api.get(`/product/${userId}`)
+
+              const OnlyProductSelected  =  router.location.search !== "" ? response.data
+              .filter( product => product._id === productId): response.data;
+              
+              console.log('OnlyProductSelected', OnlyProductSelected)
+               setProduct(OnlyProductSelected);
+  
+            }, 1000)
+  
+
+      },[router.location.search])
+
+
  
-  },[count])
-
 
   async function handleDislike(id) {
 
@@ -80,7 +108,12 @@ const Change = (router) => {
 
  async function handleLike(id) {
 
-      await api.post(`/user/${id}/likes`,null,{headers:{user: user}})
+      const resp = await api.post(`/user/${id}/likes`,null,{headers:{user: user}});
+
+       if (resp.data.message){
+        NotificationManager.success(`${resp.data.message}`, 'Notificação!');   
+        return false
+       }
       setProduct(product);
       setCount(count+1)
       NotificationManager.success(`Produto curtido!`, 'Notificação!');

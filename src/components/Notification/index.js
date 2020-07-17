@@ -16,8 +16,12 @@ const Notification = () => {
         const userIdLogged = localStorage.getItem('_id');
       
          const response = await api.get(`/notification/${userIdLogged}`)
+          
+         const userIdLoggedWithLink = response.data.map( userIdLoggedWithLink => {
+           return {...userIdLoggedWithLink, linkProduct:`/change?productId=${userIdLoggedWithLink.productId}` }
+         })
 
-          setUserOnLine(response.data);
+          setUserOnLine(userIdLoggedWithLink);
     
       }, 400)
     
@@ -25,33 +29,30 @@ const Notification = () => {
 
 
  return (
-  <>
-  <main role="main" className="container">
-        <div class="container">
-          <div class="row">
-            <div class="col-12 col-sm-8 col-lg-5">
-              <h6 class="text-muted">Notificação</h6> 
-                {
-                  userOnLine.map( user  => (
-                     
-                <ul key={user._id} class="list-group">
-                
-                    <li  class="list-group-item d-flex justify-content-between align-items-center">
-                      <div class="image-parent">
-                          <img src={user.urlFireBase} class="rounded-circle" alt="quixote"/>
-                      </div>
-                     {user.name}
-                    </li>
-                   
-                </ul>
 
-                ))}
+      
+       <>
+        <br/>  <br/>   <br/> <br/>  <br/>   <br/>
+        <ul   class="list-group">
+          <li class="list-group-item active">Suas Notificações</li>
+          {
+            userOnLine.map( user  => (
+            <Link to={user.linkProduct}> 
+                <li class="list-group-item">
+                <div class="image-parent">
+                    <img src={user.urlFireBase} class="rounded-circle" alt="quixote"/>
+                </div>
+                {user.name}, curtiu seu post.
+                </li>   
+        
+              </Link>
 
-            </div>
-          </div>
-        </div>
-        </main>
-        </>
+
+          ))}
+          </ul>
+
+
+      </>
 
  )
 

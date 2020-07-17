@@ -127,12 +127,16 @@ class ImageUploadBase extends Component {
                 <option>Perfume</option>
                 <option>Bolsa</option>
                 <option>Relógio</option>
+                <option>Maquiagem</option>
+                <option>Sandália</option>
+                <option>Sapato</option>
+                <option>Outros</option>
               </select>
                <br/><br/>
                
                   <div className="form-group" >
                 
-                  <div class="button-wrapper"><span class="label"><img src={camera} width="30px"/></span>
+                  <div class="button-wrapper"><span class="label"><img src={camera} width="25px"/></span>
 
                   <input type="file" name="upload" id="upload" class="btn btn-primary" placeholder="Upload File" onChange={this.handleChange}/>
 

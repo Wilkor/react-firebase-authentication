@@ -48,7 +48,7 @@ class MessageItem extends Component {
             <a className="navbar-brand" href="#">
                 <img src={message.avatar}  
                 className="rounded-circler-commnets" alt="" width="30px"/></a>
-                <span className="messageBox backgroundBlue">{message.text}</span>
+                <span className="messageBox1 backgroundBlue1">{message.text}</span>
                  {message.editedAt && <span>(Editado)</span>}
 
                  {authUser.uid === message.userId && (

@@ -18,12 +18,14 @@ const Chat = ({ location }) => {
   const ENDPOINT = environment.HOST;
 
   useEffect(() => {
-
+    const userIdLogged =  localStorage.getItem('_id');
     const { name, room, idUser } = queryString.parse(location.search);
 
-    api.post('/invite', {name, room, idUser});
+    api.post('/invite', {name, room, idUser });
 
-    socket = io(ENDPOINT);
+    socket = io(ENDPOINT, {
+      query:{user:userIdLogged}
+    });
 
     setRoom(room);
     setName(name)
