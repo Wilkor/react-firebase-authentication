@@ -141,7 +141,7 @@ class Messages extends Component {
                   
                   </textarea>
       
-                 <button className="sendMessage" type="submit"> Enviar </button>
+                 <button className="sendMessage" type="submit"> Publicar </button>
 
          
             </form>
