@@ -5,13 +5,15 @@ import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 import api from '../../Service/api';
 
+import logo from '../../assets/girls-stuff.png'
+
 const SignInPage = () => (
 <>
 
 <div class="login-box">
 		 <a className="navbar-brand" href="#">
-  <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="90" height="90" className="rounded-circle"/>
- 
+  {/* <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="90" height="90" className="rounded-circle"/> */}
+  <img src={logo} width="150" height="100" />
   </a>	
       
 			<SignInGoogle />

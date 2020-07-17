@@ -271,7 +271,7 @@ body {
 
 }
 .bg-dark {
-    background-color: #c2185b!important;
+    background-color: #242526!important;
 }
 #imagem-upload {
   margin-left: 100px;
@@ -295,15 +295,14 @@ body {
 
 .btn-primary {
   color: #fff;
-  background-color: #c2185b;
-  border-color: #c2185b;
+  background-color: #242526;
+  border-color: #242526;
 }
 .btn-primary:hover {
   color: #fff;
-  background-color: #c2185b;
-  border-color: #c2185b;
+  background-color: #242526;
+  border-color: #242526;
 }
-
 .list-group-item.active {
   z-index: 2;
   color: #919191;
@@ -321,6 +320,12 @@ width: 91%;
 margin-left: 50px;
 }
 
+.nav-link {
+  display: block;
+  padding: .5rem 1rem;
+  font-size: 15px;
+  margin-top: 10px;
+}
 
 @media (min-width: 360px) and (max-width: 700px) {
 

@@ -58,20 +58,23 @@ color:#333;
 }
 
 .main-container ul li .buttons {
-margin-top:10px;
-display: grid;
-grid-template-columns:repeat(2,1fr);
-grid-gap: 10px;
+      margin-top:10px;
+      display: grid;
+      grid-template-columns:repeat(2,1fr);
+      grid-gap: 10px;
+      display: flex;
+      justify-content: space-between;
 
 }
 
 .main-container ul li .buttons button {
-height: 50px;
-box-shadow: 0 2px 2px 0 rgba(0, 0,0, 0.05);
-border:0;
-border-radius: 4px;
-background: #fff;
-cursor:pointer
+   height: 50px;
+   box-shadow: 0 2px 2px 0 rgba(0, 0,0, 0.05);
+   border: 0;
+   border-radius: 4px;
+   background: #fff;
+   cursor: pointer;
+   width: 170px;
 }
 
 .main-container ul li .buttons button:hover img {
@@ -138,8 +141,6 @@ cursor:pointer;
 
 
 }
-
-
 
 
 @media (min-width: 300px) and (max-width: 700px) {

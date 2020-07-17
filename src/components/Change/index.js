@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import dislike from  '../../assets/dislike.svg';
+import share from  '../../assets/compartilhar.svg';
 import like from  '../../assets/like.svg';
 import emojiTriste from  '../../assets/emojiTriste.png';
 import { Link } from "react-router-dom";
@@ -10,7 +11,15 @@ import io from 'socket.io-client'
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 import environment from '../../constants/environment';
+import {
+ 
+  FacebookShareButton,
+  LineShareButton,
+  TelegramShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
 
+} from "react-share";
 import itsamatch from '../../assets/itsamatch.png';
 import './main.css';
 
@@ -21,7 +30,7 @@ import './main.css';
 const Change = (router) => {
 
 
-  console.log(router.location)
+  console.log(router)
   const { productId } = queryString.parse(router.location.search);
 
     const [product,setProduct] = useState([])
@@ -74,8 +83,6 @@ const Change = (router) => {
 
       useEffect( () => {
 
-  
-
             setTimeout( async () => {
             
               const userId =  localStorage.getItem('_id');
@@ -91,7 +98,7 @@ const Change = (router) => {
   
             }, 1000)
   
-
+ 
       },[router.location.search])
 
 
@@ -165,8 +172,18 @@ const Change = (router) => {
           <button type="button"  onClick={() => handleLike(produto._id)}>
           <img src={like} alt="like"/>
           </button>
-        
-          
+{/*         
+          <button type="button" >
+            <WhatsappShareButton   title='Miga, olha que bacana esse produto!'
+            separator=":: "url={environment.FRONT + "/change?productId="+ produto._id}/>
+           <img src={share} width="20px"/> WhatsApp
+          </button>
+
+          <button type="button" >
+           <img src={share} width="20px"/> Facebook
+          <FacebookShareButton  url={environment.FRONT + "/change?productId="+ produto._id} /> 
+          </button> */}
+
           </div>
 
           </li>
